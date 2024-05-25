@@ -1,9 +1,9 @@
-package com.livinservices.ProjectBoilerPlate.Models.Extras;
+package com.livinservices.ProjectBoilerPlate.Extras;
 
 
 import com.livinservices.ProjectBoilerPlate.Models.Role;
 import com.livinservices.ProjectBoilerPlate.Models.User;
-import com.livinservices.ProjectBoilerPlate.Models.Interfaces.UserRepository;
+import com.livinservices.ProjectBoilerPlate.Repositories.UserRepository;
 
 
 import org.springframework.security.core.GrantedAuthority;
@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,12 +28,12 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		User user = userRepository.findByEmail(email);
+		Optional<User> user = userRepository.findByEmail(email);
 
-		if (user != null) {
-			return new org.springframework.security.core.userdetails.User(user.getEmail(),
-					user.getPassword(),
-					mapRolesToAuthorities(user.getRoles()));
+		if (user.isPresent()) {
+			return new org.springframework.security.core.userdetails.User(user.get().getEmail(),
+					user.get().getPassword(),
+					mapRolesToAuthorities(user.get().getRoles()));
 		}else{
 			throw new UsernameNotFoundException("Invalid username or password.");
 		}

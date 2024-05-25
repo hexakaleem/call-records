@@ -1,4 +1,4 @@
-package com.livinservices.ProjectBoilerPlate.Models.Extras;
+package com.livinservices.ProjectBoilerPlate.Extras;
 
 
 import jakarta.validation.constraints.Email;
@@ -31,5 +31,8 @@ public class RegisterRequest
 
 	@NotEmpty(message = "Password should not be empty")
 	private String password;
+
+	@NotEmpty(message = "Role should not be empty")
+	private String role;
 
 }

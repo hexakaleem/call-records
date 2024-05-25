@@ -8,37 +8,29 @@ import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.sql.Time;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="calls")
-public class Call implements Serializable
+@Table(name="team_users")
+public class TeamUser implements Serializable
 {
 	@Serial
 	private static final long serialVersionUID = 1L;
 
 	@Id
-
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable=false)
-	private String phoneNumber;
+	@ManyToOne
+	@JoinColumn(name = "team_id")
+	private Team team;
 
-	@Column(nullable=false)
-	private LocalDateTime madeAt;
+	@ManyToOne
+	@JoinColumn(name = "member_id")
+	private User member;
 
-	@ManyToOne // One call is made by one user
-	private User madeBy;
-
-	@Column(nullable=false)
-	private String status;
-
+	// Getters and Setters
 }

@@ -1,4 +1,4 @@
-package com.livinservices.ProjectBoilerPlate.Models.Interfaces;
+package com.livinservices.ProjectBoilerPlate.Repositories;
 
 import com.livinservices.ProjectBoilerPlate.Models.Role;
 import org.springframework.data.jpa.repository.JpaRepository;

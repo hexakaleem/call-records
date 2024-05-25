@@ -1,6 +1,9 @@
 package com.livinservices.ProjectBoilerPlate.Models;
 
 import jakarta.persistence.*;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,37 +11,27 @@ import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.sql.Time;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="calls")
-public class Call implements Serializable
+@Table(name="users_roles")
+public class UserRole implements Serializable
 {
 	@Serial
 	private static final long serialVersionUID = 1L;
 
 	@Id
-
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable=false)
-	private String phoneNumber;
+	@ManyToOne
+	private User user;
 
-	@Column(nullable=false)
-	private LocalDateTime madeAt;
+	@ManyToOne
+	private Role role;
 
-	@ManyToOne // One call is made by one user
-	private User madeBy;
-
-	@Column(nullable=false)
-	private String status;
-
+	// Getters and Setters
 }

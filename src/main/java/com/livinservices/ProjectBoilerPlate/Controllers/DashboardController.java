@@ -2,7 +2,7 @@ package com.livinservices.ProjectBoilerPlate.Controllers;
 
 
 
-import com.livinservices.ProjectBoilerPlate.Models.Interfaces.UserService;
+import com.livinservices.ProjectBoilerPlate.Services.UserService;
 import com.livinservices.ProjectBoilerPlate.Models.Team;
 import com.livinservices.ProjectBoilerPlate.Models.User;
 import org.springframework.stereotype.Controller;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class DashboardController
@@ -26,14 +27,15 @@ public class DashboardController
 	public String dashboard(Model model, Principal principal) {
 		if (principal != null) {
 			// Retrieve authenticated user based on principal's email
-			User authenticatedUser = userService.findUserByEmail(principal.getName());
+			Optional<User> authenticatedUser = userService.findUserByEmail(principal.getName());
 
 			// Example: Fetch user's teams and agents (adjust as per your application's logic)
-			List<Team> userTeams = authenticatedUser.getTeams();
+			List<Team> userTeams = authenticatedUser.get().getTeams();
 
 			// Add data to the model
 			model.addAttribute("user", authenticatedUser);
-			model.addAttribute("teams", userTeams);
+			model.addAttribute("userTeams", userTeams);
+
 		}else{
 			return "redirect:/login";
 		}

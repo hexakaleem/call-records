@@ -33,11 +33,15 @@ public class Organization implements Serializable
 	@JoinColumn(name = "created_by")
 	private User created_by;
 
-	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinTable(
-			name="team_organization_association",
-			joinColumns={@JoinColumn(name="ORGANIZATION_ID", referencedColumnName="ID")},
-			inverseJoinColumns={@JoinColumn(name="TEAM_ID", referencedColumnName="ID")})
-	private List<Team> teams = new ArrayList<>();
+
+	@OneToMany(mappedBy = "organization")  // MappedBy for one-to-many
+	private List<Team> teams;
+
+	//@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+	//@JoinTable(
+	//		name="team_organization_association",
+	//		joinColumns={@JoinColumn(name="ORGANIZATION_ID", referencedColumnName="ID")},
+	//		inverseJoinColumns={@JoinColumn(name="TEAM_ID", referencedColumnName="ID")})
+	//// List<Team> teams = new ArrayList<>();
 
 }

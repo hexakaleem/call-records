@@ -4,10 +4,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ProjectBoilerPlateApplication {
+public class CallTrackApplication
+{
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProjectBoilerPlateApplication.class, args);
+		SpringApplication.run( CallTrackApplication.class, args);
 	}
 
 }

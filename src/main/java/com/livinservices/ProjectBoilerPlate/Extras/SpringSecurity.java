@@ -1,4 +1,4 @@
-package com.livinservices.ProjectBoilerPlate.Models.Extras;
+package com.livinservices.ProjectBoilerPlate.Extras;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
