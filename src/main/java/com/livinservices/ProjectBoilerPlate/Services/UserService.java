@@ -46,6 +46,11 @@ public class UserService {
 		return user;
 	}
 
+	public User save(User user) {
+		user.setPassword( bcryptEncoder.encode(user.getPassword()) );
+		return userRepository.save(user);
+	}
+
 	public Optional<User> getUserById(Long userId) {
 		return userRepository.findById(userId);
 	}

@@ -29,7 +29,7 @@ public class Organization implements Serializable
 	@Column(nullable=false)
 	private String name;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "created_by")
 	private User created_by;
 

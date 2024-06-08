@@ -4,195 +4,184 @@
     <title>Call Center Management</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/dashboard.css}"/>
+    <link rel="icon" type="image/x-icon" th:href="@{/images/logo.ico}">
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-        }
-
-        .sidebar {
-            width: 200px;
-            background-color: #2c3e50;
-            color: #fff;
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
-            padding-top: 60px;
-        }
-
-        .sidebar ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .sidebar li {
-            text-align: center;
-            padding: 20px 10px;
-        }
-
-        .sidebar li a {
-            color: #fff;
-            text-decoration: none;
-            display: block;
-            padding: 10px;
-            background-color: #34495e;
-            border-radius: 5px;
-        }
-
-        .sidebar li a i {
-            display: block;
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .sidebar li a:hover,
-        .sidebar li a:hover i {
-            color: #e67e22;
-            background-color: #2c3e50;
-        }
-
-        .sidebar li a i {
-            margin-right: 10px;
-        }
-
-        .top-banner {
-            background-color: #2c3e50;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .content {
-            margin-left: 200px;
-            padding: 20px;
-        }
-
-        .footer {
-            background-color: #2c3e50;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
         .section {
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            padding: 20px;
             margin-bottom: 20px;
         }
 
         .section h3 {
-            color: #2c3e50;
-            margin-top: 0;
+            font-size: 18px;
+            margin: 0;
         }
 
-        .section .btn {
-            background-color: #2c3e50;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            text-decoration: none;
-            margin-right: 10px;
-            transition: background-color 0.3s ease;
-        }
-
-        .section .btn:hover {
-            background-color: #e67e22;
-        }
-
-        .stats-box {
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        .sidebar-section {
             padding: 20px;
-            text-align: center;
-            margin-bottom: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 100vh;
         }
 
-        .stats-box i {
-            font-size: 48px;
-            color: #2c3e50;
+        .sidebar-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-section li {
             margin-bottom: 10px;
         }
 
-        .stats-box h4 {
-            color: #2c3e50;
-            margin-bottom: 0;
+        .sidebar-section a {
+            text-decoration: none;
         }
 
-        .stats-box p {
-            color: #777;
-            margin-bottom: 0;
+        .logo-section {
+            background-color: #a19452;
+            padding: 10px;
+            text-align: center;
         }
 
-        .table th,
-        .table td {
-            vertical-align: middle;
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
         }
+
+        .header-section {
+            border-bottom: 1px solid #ccc;
+        }
+
+        .top-banner {
+            padding-left: 40px;
+            margin-left: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+
+        }
+        .content-section {
+            padding: 20px;
+        }
+        .header-section h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .header-section h3 {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .header-section small {
+            font-size: 14px;
+            color: #666;
+        }
+
+
     </style>
 </head>
 <body>
-<!-- Admin Panel -->
-<div class="sidebar">
+<!-- Logo Section -->
+<div class="logo-section">
+    <img src="/images/logo.png" alt="Logo" class="logo">
+    <span class="header-text">CallCue</span>
+</div>
+<!-- Sidebar Section -->
+<div class="sidebar sidebar-section">
     <ul>
         <li><a href="#"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
         <li><a href="#"><i class="fas fa-building"></i>Organizations</a></li>
-        <li><a href="#"><i class="fas fa-users"></i>Teams</a></li>
-        <li><a href="#"><i class="fas fa-user-tie"></i>Managers</a></li>
-        <li><a href="#"><i class="fas fa-phone"></i>Calls</a></li>
+        <li><a href="#"><i class="fas fa-users"></i>Profile</a></li>
+        <li><a href="#" th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
     </ul>
 </div>
 
+<div class="header-section">
 <div class="top-banner">
-    <h1>Admin Panel</h1>
+    <div class="">
+        <h1>Admin Panel</h1>
+    </div>
+    <div class="row">
+
+            <div class="col-md-6 left">
+                <div class="row">
+                    <i class="fas fa-user"></i>
+                    <span th:text="${user.getName()}">
+                        <i class="fas fa-id-card"></i> Admin Full Name
+                    </span></div>
+                <div class="row">
+                    <small th:text="${user.getUserName()}">
+                        <i class="fas fa-user-tag"></i> Username
+                    </small>
+                </div>
+                <div class="row">
+                    <small th:text="${user.getRoles().get(0).getName()}">
+                        <i class="fas fa-briefcase"></i> Role
+                    </small>
+                </div>
+                <div class="row"></div>
+
+            </div>
+            <div class="col-md-6 ">
+                    <a href="#" th:href="@{/logout}" class="btn btn-secondary btn-sm float-right">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+            </div>
+
+    </div>
+</div>
 </div>
 
 <div class="content">
+    <div th:fragment="messages">
+        <div th:if="${error != null}" class="alert alert-success">
+            <p th:text="${param.success}"></p>
+        </div>
+        <div th:if="${param.error}" class="alert alert-danger">
+            <p th:text="${param.error}"></p>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-3">
             <div class="stats-box">
                 <i class="fas fa-building"></i>
                 <h4>Organizations</h4>
-                <p>10</p>
+                <p th:text="${allOrg.size()}">Number Of Organizations</p>
             </div>
         </div>
         <div class="col-md-3">
             <div class="stats-box">
                 <i class="fas fa-users"></i>
                 <h4>Teams</h4>
-                <p>25</p>
+                <p th:text="${allTeams.size()}">Number Of Teams</p>
             </div>
         </div>
         <div class="col-md-3">
             <div class="stats-box">
                 <i class="fas fa-user-tie"></i>
-                <h4>Managers</h4>
-                <p>15</p>
+                <h4>Users</h4>
+                <p th:text="${allUsers.size()}">Number Of Users</p>
             </div>
         </div>
         <div class="col-md-3">
             <div class="stats-box">
                 <i class="fas fa-phone"></i>
                 <h4>Calls</h4>
-                <p>1,000</p>
+                <p th:text="${allCalls.size()}">Number Of Calls</p>
             </div>
         </div>
     </div>
-
 
     <!-- Teams -->
     <div class="section">
         <div class="d-flex justify-content-between align-items-center">
             <h3>Teams</h3>
-            <a href="#" class="btn btn-primary">Add New Team</a>
+
         </div>
         <table class="table table-striped">
             <thead>
@@ -204,22 +193,21 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="team : ${userTeams}">
+            <tr th:each="team : ${allTeams}">
                 <td th:text="${team.name}">Team Name</td>
                 <td th:text="${team.organization.getName()}">Organization</td>
                 <td th:text="${team.users.size()}">Members</td>
-                <td><a href="#" class="btn btn-primary btn-sm">View Details</a></td>
+                <td><a th:href="@{/teams/{id}(id=${team.id})}" class="btn btn-secondary btn-sm">View Details</a></td>
             </tr>
             </tbody>
         </table>
     </div>
 
-
-    <!-- Organization -->
+    <!-- Organizations -->
     <div class="section">
         <div class="d-flex justify-content-between align-items-center">
             <h3>Organizations</h3>
-            <a href="#" class="btn btn-primary">Add Organization</a>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addOrganizationModal">Add Organization</button>
         </div>
         <table class="table table-striped">
             <thead>
@@ -231,53 +219,78 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="organizaion : ${allOrganizations}">
-                <td th:text="${team.name}">Team Name</td>
-                <td th:text="${team.organization.getName()}">Organization</td>
-                <td th:text="${team.users.size()}">Members</td>
-                <td><a href="#" class="btn btn-primary btn-sm">View Details</a></td>
+            <tr th:each="organization : ${allOrg}">
+                <td th:text="${organization.name}">Organization Name</td>
+                <td th:text="${organization.created_by.getName()}">Created By</td>
+                <td th:text="${organization.getTeams().size()}">Teams</td>
+                <td><a href="#" class="btn btn-secondary btn-sm">View Details</a></td>
             </tr>
             </tbody>
         </table>
     </div>
+</div>
 
 
-    <div class="section">
-        <h3>Organizations</h3>
-        <a href="#" class="btn">Add New Organization</a>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Acme Inc.</td>
-                <td>123 Main St, Anytown USA</td>
-                <td><a href="#" class="btn btn-primary btn-sm">View Details</a></td>
-            </tr>
-            <!-- Add more rows as needed -->
-            </tbody>
-        </table>
+<!-- Add Organization Modal -->
+<div class="modal fade" id="addOrganizationModal" tabindex="-1" role="dialog" aria-labelledby="addOrganizationModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addOrganizationModalLabel">Add New Organization</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form method="post" role="form" th:action="@{/admin_section/createOrganization}" th:object="${createOrganizationForm}">
+                <div class="modal-body">
+                <div class="form-group mb-3">
+                    <label class="form-label">Name</label>
+                    <input class="form-control" id="orgName" name="orgName" placeholder="Enter the Organization Name" th:field="*{orgName}" type="text" />
+                    <p th:errors="*{orgName}" class="text-danger" th:if="${#fields.hasErrors('orgName')}"></p>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="form-label">Manager Name</label>
+                    <input class="form-control" id="manName" name="manName" placeholder="Enter the Manager Name" th:field="*{manName}" type="text" />
+                    <p th:errors="*{manName}" class="text-danger" th:if="${#fields.hasErrors('manName')}"></p>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="form-label">Email</label>
+                    <input class="form-control" id="manEmail" name="manEmail" placeholder="Enter email address" th:field="*{manEmail}" type="email" />
+                    <p th:errors="*{manEmail}" class="text-danger" th:if="${#fields.hasErrors('manEmail')}"></p>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="form-label">Manager UserName</label>
+                    <input class="form-control" id="manUserName" name="manUserName" placeholder="Enter the Manager User name" th:field="*{manUserName}" type="text" />
+                    <p th:errors="*{manUserName}" class="text-danger" th:if="${#fields.hasErrors('manUserName')}"></p>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="form-label">Password</label>
+                    <input class="form-control" id="manPassword" name="manPassword" placeholder="Enter password for Manager" th:field="*{manPassword}" type="password" />
+                    <p th:errors="*{manPassword}" class="text-danger" th:if="${#fields.hasErrors('manPassword')}"></p>
+                </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add Organization</button>
+                </div>
+
+            </form>
+
+        </div>
     </div>
-
-    <!-- Add similar sections for Teams, Managers, and Calls -->
 </div>
 
 <div class="footer">
-    <p>&copy; 2023 Call Center Management. All rights reserved.</p>
+    <p>&copy; 2024 Ansari Call Center Management. All rights reserved.</p>
 </div>
 
-<!-- Manager Panel -->
-<!-- ... -->
-
-<!-- Agent Panel -->
-<!-- ... -->
-
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>

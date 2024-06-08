@@ -42,7 +42,7 @@ public class User implements Serializable
 	@JoinColumn(name="organization_id")
 	private Organization organization;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="created_by_id")
 	private User createdBy;
 

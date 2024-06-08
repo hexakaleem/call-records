@@ -45,6 +45,7 @@ public class AuthController {
 		return "register";
 	}
 
+
 	@PostMapping("/register")
 	public String registration(@Valid @ModelAttribute("user") RegisterRequest registerRequest,
 	                           BindingResult result,

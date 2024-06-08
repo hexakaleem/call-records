@@ -1,0 +1,136 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #2c3e50;
+    color: #fff;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 60px;
+}
+.header-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+}
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    text-align: center;
+    padding: 20px 10px;
+}
+
+.sidebar li a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    background-color: #34495e;
+    border-radius: 5px;
+}
+
+.sidebar li a i {
+    display: block;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.sidebar li a:hover,
+.sidebar li a:hover i {
+    color: #e67e22;
+    background-color: #2c3e50;
+}
+
+.sidebar li a i {
+    margin-right: 10px;
+}
+
+.top-banner {
+    background-color: #2c3e50;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+.content {
+    margin-left: 200px;
+    padding: 20px;
+}
+
+.footer {
+    background-color: #2c3e50;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.section {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.section h3 {
+    color: #2c3e50;
+    margin-top: 0;
+}
+
+.section .btn {
+    background-color: #2c3e50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-decoration: none;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.section .btn:hover {
+    background-color: #e67e22;
+}
+
+.stats-box {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.stats-box i {
+    font-size: 48px;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.stats-box h4 {
+    color: #2c3e50;
+    margin-bottom: 0;
+}
+
+.stats-box p {
+    color: #777;
+    margin-bottom: 0;
+}
+
+.table th,
+.table td {
+    vertical-align: middle;
+}
