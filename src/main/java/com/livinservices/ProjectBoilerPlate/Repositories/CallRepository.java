@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @Repository
 public interface CallRepository extends JpaRepository<Call, Long>
 {
+	List<Call> findByPhoneNumber(String phoneNumber);
 	List<Call> findByMadeBy_Id(Long userId);
 	List<Call> findByMadeBy_IdAndMadeAtBetween(Long userId, LocalDateTime startOfDay, LocalDateTime endOfDay);
 

@@ -46,6 +46,23 @@ public class UserService {
 		return user;
 	}
 
+	public User registerUser(RegisterRequest userData, Organization organization, Role role, User created_by) throws UserRegistrationException
+	{
+		// Validate user data (e.g., email, password)
+		User user = new User();
+		user.setName( userData.getFirstName() );
+		user.setUserName(userData.getUserName());
+		user.setEmail(userData.getEmail());
+		user.setOrganization( organization );
+		user.setCreatedBy( created_by );
+		user.setPassword(bcryptEncoder.encode(userData.getPassword())); // Assuming password hashing
+
+
+		user = userRepository.save(user);
+		userRoleService.assignRoleToUser( user, role );  // Assign role to user
+		return user;
+	}
+
 	public User save(User user) {
 		user.setPassword( bcryptEncoder.encode(user.getPassword()) );
 		return userRepository.save(user);

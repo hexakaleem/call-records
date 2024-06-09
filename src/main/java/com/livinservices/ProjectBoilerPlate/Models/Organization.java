@@ -37,6 +37,12 @@ public class Organization implements Serializable
 	@OneToMany(mappedBy = "organization")  // MappedBy for one-to-many
 	private List<Team> teams;
 
+
+	@OneToMany(mappedBy = "organization")  // MappedBy for one-to-many
+	private List<User> users;
+
+
+
 	//@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	//@JoinTable(
 	//		name="team_organization_association",

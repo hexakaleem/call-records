@@ -4,15 +4,13 @@ import com.livinservices.ProjectBoilerPlate.CustomExceptions.TeamNotFoundExcepti
 import com.livinservices.ProjectBoilerPlate.Extras.RegisterRequest;
 import com.livinservices.ProjectBoilerPlate.Forms.CreateOrganizationForm;
 import com.livinservices.ProjectBoilerPlate.Forms.CreateRoleForm;
-import com.livinservices.ProjectBoilerPlate.Models.Organization;
-import com.livinservices.ProjectBoilerPlate.Models.Role;
-import com.livinservices.ProjectBoilerPlate.Models.Team;
-import com.livinservices.ProjectBoilerPlate.Models.User;
+import com.livinservices.ProjectBoilerPlate.Models.*;
 import com.livinservices.ProjectBoilerPlate.Services.*;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,13 +29,44 @@ public class AdminController
 	private final RoleService roleService;
 	private final  UserRoleService userRoleService;
 	private final  TeamUserService teamUserService;
-	public AdminController(UserService userService, OrganizationService organizationService, TeamService teamService, RoleService roleService, UserRoleService userRoleService, TeamUserService teamUserService) {
+	private final  CallService callsService;
+	public AdminController(UserService userService, OrganizationService organizationService, TeamService teamService, RoleService roleService, UserRoleService userRoleService, TeamUserService teamUserService, CallService callsService) {
 		this.userService = userService;
 		this.organizationService = organizationService;
 		this.teamService = teamService;
 		this.roleService = roleService;
 		this.userRoleService = userRoleService;
 		this.teamUserService = teamUserService;
+		this.callsService = callsService;
+	}
+
+
+	@GetMapping("/dashboard")
+	public String dashboard(Model model, Principal principal){
+		if (principal != null)
+		{
+			Optional<User> authenticatedUser = userService.findUserByEmail( principal.getName() );
+			List<Team> userTeams = authenticatedUser.get().getTeams();
+			List<Organization> allOrganizations = organizationService.getAllOrganizations();
+			List<Team> allTeams = teamService.getAllTeams();
+			List<Call> allCalls = callsService.getAllCalls();
+			List<User> allUsers = userService.getAllUsers();
+
+			// Add data to the model
+			model.addAttribute( "user", authenticatedUser.get() );
+			model.addAttribute( "userTeams", userTeams );
+			model.addAttribute( "allCalls", allCalls );
+			model.addAttribute( "allOrg", allOrganizations );
+			model.addAttribute( "allTeams", allTeams );
+			model.addAttribute( "allUsers", allUsers );
+
+			CreateOrganizationForm createOrganizationForm = new CreateOrganizationForm();
+			model.addAttribute( "createOrganizationForm", createOrganizationForm );
+		}else{
+			return "redirect:/login";
+		}
+		// Return the name of the Thymeleaf template to render
+		return "/dashboard/admin_dashbaord";
 	}
 	@PostMapping("/createOrganization")
 	public String createOrganization(@Valid @ModelAttribute("organization")CreateOrganizationForm request, Principal principal, Model model, BindingResult result) {

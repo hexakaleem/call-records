@@ -38,7 +38,7 @@ public class User implements Serializable
 	@Column(nullable=false)
 	private String password;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="organization_id")
 	private Organization organization;
 
@@ -59,6 +59,9 @@ public class User implements Serializable
 			joinColumns={@JoinColumn(name="MEMBER_ID", referencedColumnName="ID")},
 			inverseJoinColumns={@JoinColumn(name="TEAM_ID", referencedColumnName="ID")})
 	private List<Team> teams = new ArrayList<>();
+
+	@OneToMany(mappedBy = "madeBy")  // MappedBy for one-to-many
+	private List<Call> calls;
 
 
 

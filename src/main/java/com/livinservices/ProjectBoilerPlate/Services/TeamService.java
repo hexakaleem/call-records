@@ -1,6 +1,7 @@
 package com.livinservices.ProjectBoilerPlate.Services;
 
 import com.livinservices.ProjectBoilerPlate.CustomExceptions.TeamNotFoundException;
+import com.livinservices.ProjectBoilerPlate.Models.Organization;
 import com.livinservices.ProjectBoilerPlate.Models.Team;
 import com.livinservices.ProjectBoilerPlate.Repositories.OrganizationRepository;
 import com.livinservices.ProjectBoilerPlate.Repositories.TeamRepository;
@@ -36,6 +37,12 @@ public class TeamService {
 
 	public List<Team> getAllTeams() {
 		return teamRepository.findAll();
+	}
+
+
+	//findTeamByNameAndOrganization
+	public Team findTeamByNameAndOrganization(String teamName, Organization organization) {
+		return teamRepository.findTeamByNameAndOrganization(teamName, organization);
 	}
 
 	// Other methods for team management (e.g., update team)

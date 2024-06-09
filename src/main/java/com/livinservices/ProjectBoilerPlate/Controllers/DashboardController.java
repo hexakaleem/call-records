@@ -3,14 +3,11 @@ package com.livinservices.ProjectBoilerPlate.Controllers;
 
 
 import com.livinservices.ProjectBoilerPlate.Forms.CreateOrganizationForm;
-import com.livinservices.ProjectBoilerPlate.Models.Call;
-import com.livinservices.ProjectBoilerPlate.Models.Organization;
+import com.livinservices.ProjectBoilerPlate.Models.*;
 import com.livinservices.ProjectBoilerPlate.Services.CallService;
 import com.livinservices.ProjectBoilerPlate.Services.OrganizationService;
 import com.livinservices.ProjectBoilerPlate.Services.TeamService;
 import com.livinservices.ProjectBoilerPlate.Services.UserService;
-import com.livinservices.ProjectBoilerPlate.Models.Team;
-import com.livinservices.ProjectBoilerPlate.Models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,31 +37,30 @@ public class DashboardController
 		if (principal != null) {
 			// Retrieve authenticated user based on principal's email
 			Optional<User> authenticatedUser = userService.findUserByEmail(principal.getName());
-
-			// Example: Fetch user's teams and agents (adjust as per your application's logic)
-			List<Team> userTeams = authenticatedUser.get().getTeams();
-			List<Organization> allOrganizations = organizationService.getAllOrganizations();
-			List<Team> allTeams = teamService.getAllTeams();
-			List<Call> allCalls= callsService.getAllCalls();
-			List<User> allUsers = userService.getAllUsers();
-
-			// Add data to the model
-			model.addAttribute("user", authenticatedUser.get());
-			model.addAttribute("userTeams", userTeams);
-			model.addAttribute("allCalls", allCalls);
-			model.addAttribute("allOrg", allOrganizations);
-			model.addAttribute("allTeams", allTeams);
-			model.addAttribute("allUsers", allUsers);
-
-			CreateOrganizationForm createOrganizationForm = new CreateOrganizationForm();
-			model.addAttribute("createOrganizationForm", createOrganizationForm);
+			//check user role
+			List<Role> roles = authenticatedUser.get().getRoles();
+			//check if admin
+			boolean hasAdminRole = roles.stream().anyMatch(role -> role.getName().equalsIgnoreCase("ADMIN"));
+			if(hasAdminRole){
+				return "redirect:/admin_section/dashboard";
+			}
+			//check if manager
+			boolean hasManagerRole = roles.stream().anyMatch(role -> role.getName().equalsIgnoreCase("MANAGER"));
+			if(hasManagerRole){
+				return "redirect:/manager_section/dashboard";
+			}
+			//check if agent
+			boolean hasAgentRole = roles.stream().anyMatch(role -> role.getName().equalsIgnoreCase("AGENT"));
+			if(hasAgentRole){
+				return "redirect:/agent_section/dashboard";
+			}
 
 		}else{
 			return "redirect:/login";
 		}
 
 		// Return the name of the Thymeleaf template to render
-		return "dashboard/dashboard";
+		return "/dashboard/admin_dashbaord";
 	}
 
 }

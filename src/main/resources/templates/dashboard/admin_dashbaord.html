@@ -223,7 +223,7 @@
                 <td th:text="${organization.name}">Organization Name</td>
                 <td th:text="${organization.created_by.getName()}">Created By</td>
                 <td th:text="${organization.getTeams().size()}">Teams</td>
-                <td><a href="#" class="btn btn-secondary btn-sm">View Details</a></td>
+                <td><a th:href="@{/organizations/{id}(id=${organization.id})}" class="btn btn-secondary btn-sm">View Details</a></td>
             </tr>
             </tbody>
         </table>

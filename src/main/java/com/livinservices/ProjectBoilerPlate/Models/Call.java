@@ -35,7 +35,7 @@ public class Call implements Serializable
 	@Column(nullable=false)
 	private LocalDateTime madeAt;
 
-	@ManyToOne // One call is made by one user
+	@ManyToOne // Many Calls can be made by one user
 	private User madeBy;
 
 	@Column(nullable=false)

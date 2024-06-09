@@ -38,6 +38,9 @@ public class CallService {
 		return callRepository.findByMadeBy_IdAndMadeAtBetween(userId, startOfDay, endOfDay);
 
 	}
+	public List<Call> getCallsByPhoneNumber(String phoneNumber){
+		return callRepository.findByPhoneNumber(phoneNumber);
+	}
 	public List<Call> getCurrentMonthCalls(Long userId){
 		//get timoe now
 		LocalDateTime now = LocalDateTime.now();
